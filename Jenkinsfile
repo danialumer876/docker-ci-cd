@@ -15,13 +15,16 @@ node
     
     stage('Run Container') {
    
-        sh '''if [ $( docker ps -a | grep html_docker_jenkins_ci_cd ) ]; then
-                docker stop html_docker_jenkins_ci_cd
-                docker rm html_docker_jenkins_ci_cd
-                docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd
-                else
-                docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd
-              fi'''
+        sh '''CNAME=\'html_docker_jenkins_ci_cd\'
+if ["$(docker ps -qa -f name=$CNAME)"]
+then
+   docker stop $CNAME;
+   docker rm $CNAME;
+  docker run --name $CNAME -p 8008:80 -d html-docker-jenkins-ci-cd
+
+else
+    docker run --name $CNAME -p 8008:80 -d html-docker-jenkins-ci-cd
+fi'''
 //         def containerExists = sh(script: "docker ps -a -f name=html_docker_jenkins_ci_cd", returnStdout: true) 
 
 //         if(containerExists){
