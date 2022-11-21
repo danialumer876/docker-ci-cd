@@ -14,27 +14,17 @@ node
     }
     
     stage('Run Container') {
-   
-sh '''CNAME=html_docker_jenkins_ci_cd
-if ["$(docker ps -qa -f name=$CNAME)"]
-then
-   docker stop $CNAME;
-   docker rm $CNAME;
-  docker run --name $CNAME -p 8008:80 -d html-docker-jenkins-ci-cd
+  
+        def containerExists = sh(returnStdout: true, script: 'docker ps -a -f name=html_docker_jenkins_ci_cd' ) 
 
-else
-    docker run --name $CNAME -p 8008:80 -d html-docker-jenkins-ci-cd
-fi'''
-//         def containerExists = sh(script: "docker ps -a -f name=html_docker_jenkins_ci_cd", returnStdout: true) 
+        if(containerExists){
+            sh 'docker stop html_docker_jenkins_ci_cd'
+            sh 'docker rm html_docker_jenkins_ci_cd'
+            sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
 
-//         if(containerExists){
-//             sh 'docker stop html_docker_jenkins_ci_cd'
-//             sh 'docker rm html_docker_jenkins_ci_cd'
-//             sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
-
-//         } else {
-//             sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
-//         }   
+        } else {
+            sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
+        }   
     }
   
 }
