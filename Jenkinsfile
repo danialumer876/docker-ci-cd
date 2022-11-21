@@ -1,5 +1,7 @@
 pipeline
 {
+    node{
+        
     stages {
     def app
 
@@ -29,5 +31,5 @@ pipeline
     }
   
 }
-    
+    }
 }
