@@ -15,7 +15,7 @@ node
     
     stage('Run Container') {
    
-        sh '''if [ $( docker ps -a | grep testContainer ) ]; then
+        sh '''if [ $( docker ps -a | grep html_docker_jenkins_ci_cd ) ]; then
                 docker stop html_docker_jenkins_ci_cd
                 docker rm html_docker_jenkins_ci_cd
                 docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd
