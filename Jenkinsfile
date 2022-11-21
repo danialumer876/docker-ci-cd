@@ -33,7 +33,7 @@ node {
         // build the image
             sh 'docker stop hellonNodeContainer'
             sh 'docker rm hellonNodeContainer'
-            sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:8000 -d html-docker-jenkins-ci-cd'
+            sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
 
         } else {
             sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
