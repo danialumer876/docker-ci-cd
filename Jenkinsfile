@@ -31,8 +31,8 @@ node {
 
         if(!containerExists){
         // build the image
-            sh 'docker stop hellonNodeContainer'
-            sh 'docker rm hellonNodeContainer'
+            sh 'docker stop html_docker_jenkins_ci_cd'
+            sh 'docker rm html_docker_jenkins_ci_cd'
             sh 'docker run --name html_docker_jenkins_ci_cd -p 8008:80 -d html-docker-jenkins-ci-cd'
 
         } else {
