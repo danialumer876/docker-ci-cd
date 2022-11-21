@@ -29,7 +29,7 @@ node {
         
         def containerExists = sh(script: "docker ps -a -f name=html_docker_jenkins_ci_cd", returnStdout: true)
 
-        if(containerExists){
+        if(!containerExists){
         // build the image
             sh 'docker stop html_docker_jenkins_ci_cd'
             sh 'docker rm html_docker_jenkins_ci_cd'
