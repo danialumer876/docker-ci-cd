@@ -1,4 +1,6 @@
-node {
+pipeline
+{
+    stages {
     def app
 
     stage('Clone repository') {
@@ -26,4 +28,6 @@ node {
         }   
     }
   
+}
+    
 }
