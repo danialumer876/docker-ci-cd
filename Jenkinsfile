@@ -15,7 +15,7 @@ node
     
     stage('Run Container') {
    
-        sh '''CNAME=\'html_docker_jenkins_ci_cd\'
+sh '''CNAME=html_docker_jenkins_ci_cd
 if ["$(docker ps -qa -f name=$CNAME)"]
 then
    docker stop $CNAME;
